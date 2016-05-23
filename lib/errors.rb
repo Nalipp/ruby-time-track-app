@@ -1,0 +1,2 @@
+class InputNotFoundError < StandardError
+end
