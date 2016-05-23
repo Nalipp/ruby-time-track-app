@@ -3,32 +3,63 @@ require_relative './lib/submission'
 DATA_PATH = File.dirname(__FILE__) + '/data/data.csv'
 File.delete(DATA_PATH)
 
-Submission.create(topic: 'Ruby', title: 'POODR', type: 'book', minutes: 90)
-Submission.create(topic: 'Ruby', title: 'Udacity nanodegree', type: 'MOOC', minutes: 190)
-Submission.create(topic: 'HTML', title: 'Css garden', type: 'Code reading', minutes: 90)
+Submission.create(category: 'Ruby', title: 'POODR', type: 'Book', minutes: 90)
+Submission.create(category: 'Ruby', title: 'Udacity nanodegree', type: 'MOOC', minutes: 190)
+Submission.create(category: 'HTML', title: 'Css garden', type: 'Code reading', minutes: 90)
+Submission.create(category: 'Ruby', title: 'The Pickax Book', type: 'Book',  minutes: 600)
+Submission.create(category: 'Rails', title: 'Launch School', type: 'Online bootcamp',  minutes: 2600)
+Submission.create(category: 'javascript', title: 'You Dont know JS', type: 'Book',  minutes: 1200)
+
+puts "***********************************************"
+puts "**  My Coding Journey - How I learn to code  **"
+puts "***********************************************"
+puts
+puts "Input a new category and press enter. Quit[q] / Help[h]"
+      category = gets.chomp.capitalize
+puts "Input the title. Quit[q] / Help[h]"
+      title = gets.chomp.capitalize
+puts "Input the type. Quit[q] / Help[h]"
+      type = gets.chomp.capitalize
+puts "Input the minutes studied. Quit[q] / Help[h]"
+      minutes = gets.chomp.capitalize
+puts "***********************************************"
+puts "**********  Your current submission  **********"
+puts "***********************************************"
+puts "[1]Category : #{category}"
+puts "[2]Title : #{title}"
+puts "[3]Type : #{type}"
+puts "[4]Minutes : #{minutes}"
+  loop do
+    puts "Submit? [y] / Update[1-4] / Quit[q]"
+      prompt = gets.chomp.downcase
+      case prompt
+      when 'y'
+        Submission.create(category: category, title: title, type: type,  minutes: minutes)
+        break
+      when '1'
+        puts "Input the updated category"
+        category = gets.chomp.upcase
+      when '2'
+        puts "Input the updated title"
+        title = gets.chomp.upcase
+      when '3'
+        puts "Input the updated type"
+        tyoe = gets.chomp.upcase
+      when '4'
+        puts "Input the updated minutes"
+        minutes = gets.chomp.upcase
+      when 'q'
+        puts "Submission has been terminated"
+        break
+      else
+        puts "That is not a valid submission"
+      end
+    end
 
 
+# puts "Category" + " : " + prompt
 
 
-
-# sub1 = Submission.create(topic: 'Ruby', title: 'POODR', type: 'book', minutes: 90)
-# sub2 = Submission.create(topic: 'Ruby', title: 'Udacity nanodegree', type: 'MOOC', minutes: 190)
-# sub3 = Submission.create(topic: 'HTML', title: 'Css garden', type: 'Code reading', minutes: 90)
-
-
-# require_relative 'lib/input'
-# require_relative 'data/schema'
-#
-# # db_create
-# # db_seed
-#
-# # puts Input.all
-# p Input.create(category: "Ruby", resource: "The Pickax Book", minutes: 600)
-# p Input.create(category: "Rails", resource: "Launch School", minutes: 2600)
-# p Input.create(category: "javascript", resource: "You Dont know JS", minutes: 1200)
-#
-#
-#
 # #   def start
 # #     intro
 # #     program

@@ -2,14 +2,14 @@ require 'csv'
 
 class Submission
 
-  attr_reader :id, :topic, :title, :type, :minutes
+  attr_reader :id, :category, :title, :type, :minutes
   DATA_PATH = File.dirname(__FILE__) + '/../data/data.csv'
 
   @@id_count = 0
 
   def initialize(opts={})
     @id = opts[:id] || @@id_count += 1
-    @topic = opts[:topic]
+    @category = opts[:category]
     @title = opts[:title]
     @type = opts[:type]
     @minutes = opts[:minutes]
@@ -23,14 +23,14 @@ class Submission
 
   def save
     CSV.open(DATA_PATH, 'a') do |submission|
-      submission << [id, topic, title, type, minutes]
+      submission << [id, category, title, type, minutes]
     end
   end
 end
 
-# sub1 = Submission.create(topic: 'Ruby', title: 'POODR', type: 'book', minutes: 90)
-# sub2 = Submission.create(topic: 'Ruby', title: 'Udacity nanodegree', type: 'MOOC', minutes: 190)
-# sub3 = Submission.create(topic: 'HTML', title: 'Css garden', type: 'Code reading', minutes: 90)
+# sub1 = Submission.create(category: 'Ruby', title: 'POODR', type: 'book', minutes: 90)
+# sub2 = Submission.create(category: 'Ruby', title: 'Udacity nanodegree', type: 'MOOC', minutes: 190)
+# sub3 = Submission.create(category: 'HTML', title: 'Css garden', type: 'Code reading', minutes: 90)
 
 
 
